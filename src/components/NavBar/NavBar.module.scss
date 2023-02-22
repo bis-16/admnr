@@ -1,0 +1,9 @@
+.wrapper{
+	border: #00e774 1px solid;
+}
+
+.button{
+	&_active{
+		background-color: #00e774;
+	}
+}
