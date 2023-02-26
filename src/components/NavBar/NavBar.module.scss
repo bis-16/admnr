@@ -1,9 +1,47 @@
-.wrapper{
-	border: #00e774 1px solid;
-}
+
 
 .button{
+	//height: 20px;
+	height: 100%;
+	//padding: 20px;
 	&_active{
-		background-color: #00e774;
+		background-color: red;
+
+	}
+
+}
+
+
+ul{
+	display: flex;
+	flex-direction: column;
+}
+
+.item{ //li
+	//background-color: #4f0000;
+	//&:active{
+	//	background-color: #61dafb;
+	//}
+	list-style-type: none;
+	width: 100%;
+	height: 100%;
+
+	//padding: 20px 0;
+	//margin: 5px 0;
+
+	a {
+		display: block;
+		height: 100%;
+		//text-align: end;
+		line-height: 50px;
+		padding-left: 10px;
+		text-decoration: none;
+		color: white;
+		transition: 0.5s;
+		text-transform: uppercase;
+
+		&:hover {
+			background-color: darkred;
+		}
 	}
 }

@@ -1,3 +1,14 @@
 .wrapper{
-	border: blueviolet 1px solid;
+	display: flex;
+	flex-wrap: nowrap;
+
+}
+
+.siteName{
+
+}
+
+.text{
+	//border: red 1px solid;
+	color: darkgrey;
 }

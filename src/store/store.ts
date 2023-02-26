@@ -1,8 +1,13 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunkMiddleware from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
+import userReducer from "./reducers/user-reducer";
 
 const rootReducer = combineReducers({
+  // employeesPage: employeesReducer,
+  // pricesPage: pricesReducer,
+  // errorMessagePage: errorReducer,
+  profilePage: userReducer,
 })
 
 

@@ -8,12 +8,12 @@ interface NavButtonsProps {
 
 const NavButtons: FC<NavButtonsProps> = () => {
 
-	const routes = {...publicRoutes, ...authRoutes}
+	const routes = [...publicRoutes, ...authRoutes,]
 
 	console.group("1")
 	console.log(publicRoutes)
 	console.log(authRoutes)
-	console.log(routes)
+	console.log(`routes=`,routes)
 	console.groupEnd()
 
 	const entriesFromAppRoute = Object.entries(routes)

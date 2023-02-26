@@ -1,6 +1,8 @@
 import React, {FC} from "react";
-import {useAppSelector} from "../../hooks/useAppSelector";
-import {RootState} from "../../store/store";
+import NavBar from "../NavBar/NavBar";
+
+import s0 from "../../App.module.scss"
+import s from "./PageWrapper.module.scss"
 
 
 interface PageWrapperProps {
@@ -12,10 +14,9 @@ const PageWrapper: FC<PageWrapperProps> = ({loading, children}) => {
 
 
     return (
-        <>
-            the PageWrapper
+        <div className={`${s0.wrapper} ${s0.wrapper__content}`}>
             {children}
-        </>
+        </div>
     )
 }
 

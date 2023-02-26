@@ -1,18 +1,24 @@
 import React, {useEffect, useState} from "react";
 import logo from './logo.svg';
 import './App.css';
-import {useSelector} from "react-redux";
 import {useAppDispatch} from "./hooks/useAppDispatch";
-import {RootState} from "./store/store";
+import s0 from './App.module.scss'
 import {Spinner} from "react-bootstrap";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import PageWrapper from "./components/PageWrapper/PageWrapper";
+import NavBar from "./components/NavBar/NavBar";
+import {authRoutes, publicRoutes} from "./routes"
+import {Route, Routes} from "react-router-dom";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 function App() {
 
-  // const {user,isAuth} = useSelector((state: RootState) => state.profilePage)
+  // const {user,isAuth} = useSelector((state: RootState) => state.profilePage)`
   const [loading, setLoading] = useState<boolean>(true)
   const dispatch = useAppDispatch()
+
+  const [isAuth, setIsAuth] = useState<boolean>(true)
 
   // useEffect(() => {
   //   check().then(data=>{
@@ -25,26 +31,29 @@ function App() {
 
 
   return (
-    <div className="App">
+
+    <div className={`${s0.fullWindow}`}>
 
       <Header/>
 
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        {/*<p>*/}
-        {/*  Edit <code>src/App.js</code> and save to reload.*/}
-        {/*</p>*/}
-        {/*<a*/}
-        {/*  className="App-link"*/}
-        {/*  href="https://reactjs.org"*/}
-        {/*  target="_blank"*/}
-        {/*  rel="noopener noreferrer"*/}
-        {/*>*/}
-        {/*  Learn React*/}
-        {/*</a>*/}
-      </header>
+      <div className={`${s0.wrapper__body}`}>
+        <NavBar/>
+        <PageWrapper>
 
-      <Footer/>
+          <Routes>
+            {isAuth && authRoutes.map(({path, Component}) =>
+              <Route key={path} path={path} element={<Component/>}/>
+            )}
+            {publicRoutes.map(({path, Component}) =>
+              <Route key={path} path={path} element={<Component/>}/>
+            )}
+            <Route path={"*"} element={<ErrorPage message={"404"}/>}/>
+          </Routes>
+
+        </PageWrapper>
+      </div>
+
+      {/*<Footer/>*/}
     </div>
   );
 }
