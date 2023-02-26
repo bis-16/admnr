@@ -11,6 +11,16 @@ import NavBar from "./components/NavBar/NavBar";
 import {authRoutes, publicRoutes} from "./routes"
 import {Route, Routes} from "react-router-dom";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
+import Eleonora from "./assets/sound/Eleonora.mp3";
+import {Howl, Howler} from 'howler';
+
+var music = new Howl({
+  src: [Eleonora],
+  // autoplay: true,
+  loop: true,
+  volume: 0.5,
+  html5: true,
+});
 
 function App() {
 
@@ -37,7 +47,7 @@ function App() {
       <Header/>
 
       <div className={`${s0.wrapper__body}`}>
-        <NavBar/>
+        <NavBar music={music}/>
         <PageWrapper>
 
           <Routes>

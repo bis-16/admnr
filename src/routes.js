@@ -104,12 +104,6 @@ export const publicRoutes = [
     // hasDropdown: true
   },
   {
-    path: CONTACTS_DOCUMENTS_ROUTE,
-    name: "Документы",
-    Component: Documents,
-      nav: true,
-  },
-  {
     path: CONTACTS_VACANCIES_ROUTE,
     name: "Вакансии",
     Component: Vacancies,
