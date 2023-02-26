@@ -14,7 +14,7 @@ import ErrorPage from "./components/ErrorPage/ErrorPage";
 import Eleonora from "./assets/sound/Eleonora.mp3";
 import {Howl, Howler} from 'howler';
 
-var music = new Howl({
+const music = new Howl({
   src: [Eleonora],
   // autoplay: true,
   loop: true,

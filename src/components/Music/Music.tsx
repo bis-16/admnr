@@ -1,9 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import Eleonora from '../../assets/sound/Eleonora.mp3'
 import {Howl, Howler} from 'howler';
 
+export interface MusicProps{
+  music: Howl
+}
 
-const Music = ({music}) => {
+const Music: FC<MusicProps> = ({music}) => {
 
   const [isActive, setActive] = useState<boolean>(false)
   const [isPlaying, setIsPlaying] = useState(false);
@@ -52,7 +55,7 @@ const Music = ({music}) => {
         }
       }
       }>
-        КНПК_СТАРТ
+        [КНПК_СТАРТ]
       </div>
       <div onClick={() => {
         if (isActive) {
@@ -61,7 +64,7 @@ const Music = ({music}) => {
           setActive(false)
         }
       }}>
-        КНПК_СТОП
+        [КНПК_СТОП]
       </div>
       <div onClick={() => {
         if (isActive) {
@@ -70,7 +73,7 @@ const Music = ({music}) => {
           setActive(false)
         }
       }}>
-        КНПК_ПАУЗА
+        [КНПК_ПАУЗА]
       </div>
     </div>
   )
