@@ -11,10 +11,10 @@ import {
   TEL_ROUTE,
   CERT_ROUTE,
   TEL_ROUTE_ADM,
-  KEYS_ROUTE, NEWS_ROUTE
+  KEYS_ROUTE, NEWS_ROUTE, VACANCIES_ROUTE, VKS_ROUTE, TEL_ROUTE_SOVDEP
 } from "./const";
-import Tel from "./pages/Tel/tel";
-import TelAdm from "./pages/Tel/TelAdm/TelAdm";
+import Tel from "./pages/Tel/Tel";
+import TelAdm from "./pages/Tel/TelAdm";
 import Keys from "./pages/Keys/Keys";
 import Cert from "./pages/Cert/Cert";
 import Documents from "./pages/Documents/Documents";
@@ -22,6 +22,8 @@ import Employees from "./pages/Employees/Employees";
 import Contacts from "./pages/Contacts/Contacts";
 import News from "./pages/News/News";
 import Vacancies from "./pages/Vacancies/Vacancies";
+import VKS from "./pages/VKS/VKS";
+import TelSovDep from "./pages/Tel/TelSovDep";
 
 
 export const authRoutes = [
@@ -85,6 +87,11 @@ export const publicRoutes = [
     Component: TelAdm,
   },
   {
+    path: TEL_ROUTE_SOVDEP,
+    name: "Телефонный справочник Совета Депутатов Новосибирского района",
+    Component: TelSovDep,
+  },
+  {
     path: EMPLOYEES_ROUTE,
     name: "Сотрудники",
     // Component: EmployeesContainer,
@@ -104,9 +111,15 @@ export const publicRoutes = [
     // hasDropdown: true
   },
   {
-    path: CONTACTS_VACANCIES_ROUTE,
+    path: VACANCIES_ROUTE,
     name: "Вакансии",
     Component: Vacancies,
       nav: true,
+  },
+  {
+    path: VKS_ROUTE,
+    name: "ВКС",
+    Component: VKS,
+    nav: true,
   },
 ]

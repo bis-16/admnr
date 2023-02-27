@@ -11,61 +11,73 @@ import NavBar from "./components/NavBar/NavBar";
 import {authRoutes, publicRoutes} from "./routes"
 import {Route, Routes} from "react-router-dom";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
-import Eleonora from "./assets/sound/Eleonora.mp3";
 import {Howl, Howler} from 'howler';
+// @ts-ignore
+import Eleonora from "./assets/sound/Eleonora.mp3";
 
 const music = new Howl({
-  src: [Eleonora],
-  // autoplay: true,
-  loop: true,
-  volume: 0.5,
-  html5: true,
+	src: [Eleonora],
+	// autoplay: true,
+	loop: true,
+	volume: 0.5,
+	html5: true,
 });
 
 function App() {
 
-  // const {user,isAuth} = useSelector((state: RootState) => state.profilePage)`
-  const [loading, setLoading] = useState<boolean>(true)
-  const dispatch = useAppDispatch()
+	// const {user,isAuth} = useSelector((state: RootState) => state.profilePage)`
+	const [loading, setLoading] = useState<boolean>(true)
+	const dispatch = useAppDispatch()
 
-  const [isAuth, setIsAuth] = useState<boolean>(true)
+	const [isAuth, setIsAuth] = useState<boolean>(true)
 
-  // useEffect(() => {
-  //   check().then(data=>{
-  //     dispatch(setLogin(user.userID))
-  //   }).finally(()=>setLoading(false))
-  // })
+	// useEffect(() => {
+	//   check().then(data=>{
+	//     dispatch(setLogin(user.userID))
+	//   }).finally(()=>setLoading(false))
+	// })
 
-  if (!loading)
-    return <Spinner animation={"grow"}/>
+	if (!loading)
+		return <Spinner animation={"grow"}/>
 
 
-  return (
+	return (
+		<div>
+			{/*<div className={s0.oldFilm}>*/}
+			{/*<div className={s0.film}>*/}
+			{/*<div className={s0.effect}>*/}
+			<div className={s0.grain}>
 
-    <div className={`${s0.fullWindow}`}>
+			<div className={`${s0.fullWindow}`}>
 
-      <Header/>
 
-      <div className={`${s0.wrapper__body}`}>
-        <NavBar music={music}/>
-        <PageWrapper>
+				<Header/>
 
-          <Routes>
-            {isAuth && authRoutes.map(({path, Component}) =>
-              <Route key={path} path={path} element={<Component/>}/>
-            )}
-            {publicRoutes.map(({path, Component}) =>
-              <Route key={path} path={path} element={<Component/>}/>
-            )}
-            <Route path={"*"} element={<ErrorPage message={"404"}/>}/>
-          </Routes>
+				<div className={`${s0.wrapper__body}`}>
+					<NavBar music={music}/>
 
-        </PageWrapper>
-      </div>
+					<PageWrapper>
+						<Routes>
+							{isAuth && authRoutes.map(({path, Component}) =>
+								<Route key={path} path={path} element={<Component/>}/>
+							)}
+							{publicRoutes.map(({path, Component}) =>
+								<Route key={path} path={path} element={<Component/>}/>
+							)}
+							<Route path={"*"} element={<ErrorPage message={"404"}/>}/>
+						</Routes>
+					</PageWrapper>
 
-      {/*<Footer/>*/}
-    </div>
-  );
+				</div>
+
+				{/*<Footer/>*/}
+				</div>
+				{/*</div>*/}
+				{/*</div>*/}
+				{/*</div>*/}
+			</div>
+		</div>
+	);
 }
 
 export default App;

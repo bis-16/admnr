@@ -1,11 +1,12 @@
-
+$mainColor: rgba(152, 47, 45, 1.0);
+$bgColor: #241b1b;
 
 .button{
 	//height: 20px;
 	height: 100%;
 	//padding: 20px;
 	&_active{
-		background-color: red;
+		background-color: rgba(152, 47, 45, 0.7);;
 
 	}
 
@@ -41,7 +42,7 @@ ul{
 		text-transform: uppercase;
 
 		&:hover {
-			background-color: darkred;
+			background-color: rgba(139, 0, 0, 0.8);
 		}
 	}
 }

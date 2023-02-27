@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Tel = () => {
+const TelUo = () => {
 	return (
 		<div>
-			Tel
+
 		</div>
 	);
 };
 
-export default Tel;
+export default TelUo;

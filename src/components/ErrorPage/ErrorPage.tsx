@@ -1,4 +1,6 @@
 import React, {FC} from 'react';
+import zayac from '../../assets/img/zayac.png'
+import s0 from '../../App.module.scss'
 
 interface ErrorProps{
   message: string
@@ -6,8 +8,9 @@ interface ErrorProps{
 
 const ErrorPage:FC<ErrorProps> = ({message}) => {
   return (
-    <div>
-      Error: {message}
+    <div className={s0.wrapper__error}>
+      <div>Error: {message}</div>
+      <img src={zayac} className={s0.zayac} alt="Робозаяц"/>
     </div>
   );
 };

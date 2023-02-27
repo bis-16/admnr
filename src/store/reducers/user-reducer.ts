@@ -1,25 +1,3 @@
-// class UserReducer{
-//     constructor() {
-//         this._isAuth = false
-//         this._user = {}
-//
-//     }
-//
-//     setIsAuth(bool) {
-//         this._isAuth = bool
-//     }
-//     setUser(user) {
-//         this._user = user
-//     }
-//
-//     get isAuth() {
-//         return this._isAuth
-//     }
-//     get user() {
-//         return this._user
-//     }
-//
-// }
 import {Iuser} from "../../types/data";
 
 enum AuthActionTypes {
@@ -102,10 +80,10 @@ const initialState: userStateTypes = {
         email: "test@mail.ru",
         tel: "+7-913-123-45-67",
         birthday: '1982-02-25',
-        sex: "m",
+        sex: "М",
         admin: true,
     },
-    isAuth: false,
+    isAuth: true,
 }
 
 /**********************************************************************************************************************/

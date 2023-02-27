@@ -13,14 +13,14 @@ const Header = () => {
   return (
       <header className={`${s0.wrapper} ${s0.wrapper__header}`}>
         <div className={s.siteName}>
-          Предприятие {version}
+          ПО ЭВМ "Предприятие". Вер.{version}
         </div>
         <div className={s.text}>
           {isAuth
-            ? 'БСВВ Настройщик. СССР. 1954'
-            : 'БСВВ Справочник. СССР. 1954'}
+            ? 'БСВВ-3М Настройщик. СССР. 1954'
+            : 'БСВВ-3М Справочник. СССР. 1954'}
         </div>
-        <div>ХЗ_</div>
+        <div>_ХЗ_</div>
       </header>
   );
 };

@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import Eleonora from '../../assets/sound/Eleonora.mp3'
+import s0 from '../../App.module.scss'
 import {Howl, Howler} from 'howler';
 
 export interface MusicProps{
@@ -45,8 +45,8 @@ const Music: FC<MusicProps> = ({music}) => {
 
 
   return (
-    <div>
-      music
+    <div className={s0.wrapper__music}>
+      Аудиосопровождение:
       <div onClick={() => {
         if (!isActive) {
           console.log(`onclick.start`)

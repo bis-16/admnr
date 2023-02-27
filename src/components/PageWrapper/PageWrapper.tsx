@@ -7,7 +7,8 @@ import s from "./PageWrapper.module.scss"
 
 interface PageWrapperProps {
     loading?: boolean,
-    children: React.HTMLProps<any>,
+    // children: React.HTMLProps<any>,
+    children: any,
 }
 
 const PageWrapper: FC<PageWrapperProps> = ({loading, children}) => {

@@ -1,0 +1,38 @@
+$borderRadius: 20px;
+$mainColor: rgba(152, 47, 45, 1);
+$mainColor_a: rgba(152, 47, 45, 0.2);
+$bgColor: #241b1b;
+
+.cards{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.card{
+	padding: 20px;
+	background-color: rgba(152, 47, 45, 0.1);
+	width: 350px;
+	height: 180px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between
+}
+
+.btn{
+	background-color: rgba(152, 47, 45, 0.3);
+	//display: flex;
+	//align-items: center;
+	//justify-content: center;
+	a{
+		padding: 5px;
+		display: block;
+		height: 100%;
+		width: 100%;
+		//background-color: red;
+		text-align: center;
+		&:hover{
+			background-color: rgba(152, 47, 45, 0.5);
+		}
+
+	}
+}
