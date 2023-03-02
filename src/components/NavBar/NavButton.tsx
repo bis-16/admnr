@@ -14,8 +14,8 @@ interface NavButtonProps {
 const NavButton: FC<NavButtonProps> = ({element}) => {
 
 	const setActive = (active: any) => active.isActive                                                            //!any
-		? `${s.button_active} ${s0.fontPanton}`
-		: `${s.button} ${s0.fontPanton}`
+		? `${s.button_active}`
+		: `${s.button}`
 
 	return (
 		<li className={`${s.item}`}>

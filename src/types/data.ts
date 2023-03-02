@@ -1,3 +1,6 @@
+import {MAIN_ROUTE} from "../const";
+import Main from "../pages/Main/Main";
+
 export interface TheApplication {
     id: number,
     title: string,
@@ -29,6 +32,19 @@ export interface Iprorgam {
     version: number | string,
 }
 
+export interface Iemp {
+      photo?: string,
+      fName: string,
+      sName: string,
+      lName: string,
+      grade: string,
+      address: string,
+      room: string,
+      tel: string,
+      inTel: string,
+      eMail: string,
+}
+
 export interface Ikey {
     keyID: number,
     program: Iprorgam
@@ -40,4 +56,20 @@ export interface Ikey {
     inventory: string,
     setupDate: string,
     expDate: string,
+}
+
+export interface Iroute{
+  path: string,
+  name: string,
+  Component: React.FC,
+  nav?: boolean,
+
+}
+
+export interface ItelRoute{
+  path: any,
+  name: string,
+  fullname: string,
+  Component: React.FC,
+  disable?: boolean,
 }

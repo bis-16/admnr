@@ -35,13 +35,14 @@ const Music: FC<MusicProps> = ({music}) => {
   //   },[]
   // )
 
-  useEffect(() => {
-    console.log("isActive=", isActive)
-    if (!isActive) {
-      music.play();
-      setActive(true)
-    }
-  },[])
+
+  // useEffect(() => {
+  //   console.log("isActive=", isActive)
+  //   if (!isActive) {
+  //     music.play();
+  //     setActive(true)
+  //   }
+  // },[])
 
 
   return (

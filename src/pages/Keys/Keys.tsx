@@ -63,55 +63,10 @@ const Keys = () => {
 
 					<tr>
 						<td className={s.center}>{key.keyID}</td>
-						<td className={s.center}>{key.key}</td>
-						<td className={s.center}>{key.program.version}</td>
-						<td className={s.center}>{key.userSName}</td>
-						<td className={s.center}>{key.userFName}</td>
-						<td className={s.center}>{key.userMName}</td>
-						<td className={s.center}>sb{key.sb}</td>
-						<td className={s.center}>{key.inventory}</td>
-						<td className={s.center}>{key.setupDate}</td>
-						<td className={s.center}>{key.expDate}</td>
-					</tr>
-					<tr>
-						<td className={s.center}>{key.keyID}</td>
-						<td className={s.center}>{key.key}</td>
-						<td className={s.center}>{key.program.version}</td>
-						<td className={s.center}>{key.userSName}</td>
-						<td className={s.center}>{key.userFName}</td>
-						<td className={s.center}>{key.userMName}</td>
-						<td className={s.center}>sb{key.sb}</td>
-						<td className={s.center}>{key.inventory}</td>
-						<td className={s.center}>{key.setupDate}</td>
-						<td className={s.center}>{key.expDate}</td>
-					</tr>
-					<tr>
-						<td className={s.center}>{key.keyID}</td>
-						<td className={s.center}>{key.key}</td>
-						<td className={s.center}>{key.program.version}</td>
-						<td className={s.center}>{key.userSName}</td>
-						<td className={s.center}>{key.userFName}</td>
-						<td className={s.center}>{key.userMName}</td>
-						<td className={s.center}>sb{key.sb}</td>
-						<td className={s.center}>{key.inventory}</td>
-						<td className={s.center}>{key.setupDate}</td>
-						<td className={s.center}>{key.expDate}</td>
-					</tr>
-					<tr>
-						<td className={s.center}>{key.keyID}</td>
-						<td className={s.center}>{key.key}</td>
-						<td className={s.center}>{key.program.version}</td>
-						<td className={s.center}>{key.userSName}</td>
-						<td className={s.center}>{key.userFName}</td>
-						<td className={s.center}>{key.userMName}</td>
-						<td className={s.center}>sb{key.sb}</td>
-						<td className={s.center}>{key.inventory}</td>
-						<td className={s.center}>{key.setupDate}</td>
-						<td className={s.center}>{key.expDate}</td>
-					</tr>
-					<tr>
-						<td className={s.center}>{key.keyID}</td>
-						<td className={s.center}>{key.key}</td>
+						{isAuth && user.admin
+							? <td className={s.center}>[НЕТ_ПРАВ]</td>
+							: <td className={s.center}>{key.key}</td>
+						}
 						<td className={s.center}>{key.program.version}</td>
 						<td className={s.center}>{key.userSName}</td>
 						<td className={s.center}>{key.userFName}</td>

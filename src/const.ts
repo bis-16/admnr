@@ -1,6 +1,7 @@
 export const version = '0.1'
 
 export const MAIN_ROUTE = '/'
+export const AUTH_ROUTE = '/login'
 export const SERVICE_ROUTE = '/service'
 export const PRICES_ROUTE = '/prices'
 export const EMPLOYEES_ROUTE = '/employees'
@@ -14,13 +15,23 @@ export const PROFILE_ROUTE = '/user'
 export const BASKET_ROUTE = '/basket'
 
 export const TEL_ROUTE = '/tel'
-export const TEL_ROUTE_ADM = '/tel/adm'
-export const TEL_ROUTE_SOVDEP = '/tel/sovdep'
+export const TEL_ROUTE_ADM = TEL_ROUTE + '/адм'
+export const TEL_ROUTE_SOVDEP = TEL_ROUTE + '/совдеп'
+export const TEL_ROUTE_KSP = TEL_ROUTE + '/ксп'
+export const TEL_ROUTE_UO = TEL_ROUTE + '/образование'
+export const TEL_ROUTE_KULT = TEL_ROUTE + '/культура'
+export const TEL_ROUTE_SH = TEL_ROUTE + '/сельскоехозяйство'
+export const TEL_ROUTE_UK = TEL_ROUTE + '/управляющаякомпания'
+export const TEL_ROUTE_CMU = TEL_ROUTE + '/цму'
+export const TEL_ROUTE_BMTO = TEL_ROUTE + '/бмто'
+export const TEL_ROUTE_UFIN = TEL_ROUTE + '/уфин'
 
 export const CERT_ROUTE = '/cert'
 export const KEYS_ROUTE = '/keys'
 export const NEWS_ROUTE = '/news'
 export const VKS_ROUTE = '/vks'
+export const SITES_ROUTE = '/sites'
+export const ERROR_ROUTE = '/404'
 
 
 export const LOGIN_ROUTE = '/login'

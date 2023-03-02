@@ -20,8 +20,13 @@ $bgColor: #241b1b;
 	//src: url(../public/fonts/Mayak_Condensed_Medium.otf);
 }
 
-.fontPanton {
+.fontMayak {
 	font-family: 'Mayak', sans-serif;
+	//font-size: 20px;
+}
+
+.fontPanton {
+	font-family: 'Panton', sans-serif;
 	//font-size: 20px;
 }
 
@@ -54,15 +59,19 @@ html, body {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	font-family: 'Mayak', sans-serif;
 	-webkit-tap-highlight-color: transparent;
-
+	//font-family: 'Mayak', sans-serif;
 	color: white;
 }
 
 html, body, #app, #app>div {
 	//height: 100%;
 }
+/*********************************************/
+
+
+/*********************************************/
+
 
 
 .fullWindow {
@@ -113,6 +122,7 @@ html, body, #app, #app>div {
 }
 
 .wrapper__header{
+	font-family: 'Mayak', sans-serif;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -127,9 +137,11 @@ html, body, #app, #app>div {
 	//justify-content: center;
 	flex-wrap: nowrap;
 	min-height: 85vh;
+	font-family: 'Panton', sans-serif;
 }
 
 .wrapper__leftBlock{
+	font-family: 'Mayak', sans-serif;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -170,6 +182,82 @@ html, body, #app, #app>div {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+
+}
+
+.wrapper__tel{
+	overflow: auto;
+	//background-color: #61dafb;
+	max-height: 80vh;
+
+	.tel__title{
+		margin: 10px 0 0 10px;
+		//margin: 0 auto;
+	}
+}
+
+.wrapper__contacts{
+	display: flex;
+	flex-direction: column;
+
+}
+
+.wrapper__docs{
+	.doc{
+	margin-bottom: 10px;
+		padding: 5px;
+		display: flex;
+		align-items: center;
+		//background-color: #046a9a;
+		background-color: rgba(152, 47, 45, 0.3);
+		text-decoration: none;
+		&:hover{
+			//background-color: #104057;
+			background-color: rgba(152, 47, 45, 0.5);
+		}
+	}
+	.img{
+		height: 80px;
+		//width: 200px
+	}
+}
+
+.wrapper__vks {
+	overflow: auto;
+	max-height: 80vh;
+}
+
+.wrapper__error{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.wrapper__403{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+}
+
+.btn {
+	background-color: rgba(152, 47, 45, 0.0);
+	padding: 10px;
+	//margin-bottom: 10px;
+	display: block;
+	//background-color: red;
+	text-align: center;
+	text-decoration: none;
+	transition: 0.5s;
+
+	&:hover {
+		background-color: rgba(152, 47, 45, 0.5);
+		cursor: pointer;
+		transition: 0.5s;
+	}
+
 
 }
 

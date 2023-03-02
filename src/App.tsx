@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import {useAppDispatch} from "./hooks/useAppDispatch";
 import s0 from './App.module.scss'
@@ -8,12 +9,14 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import PageWrapper from "./components/PageWrapper/PageWrapper";
 import NavBar from "./components/NavBar/NavBar";
-import {authRoutes, publicRoutes} from "./routes"
+import {authRoutes, publicRoutes, telRoutes} from "./routes"
 import {Route, Routes} from "react-router-dom";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import {Howl, Howler} from 'howler';
 // @ts-ignore
 import Eleonora from "./assets/sound/Eleonora.mp3";
+import {RootState} from "./store/store";
+import {useAppSelector} from "./hooks/useAppSelector";
 
 const music = new Howl({
 	src: [Eleonora],
@@ -25,11 +28,10 @@ const music = new Howl({
 
 function App() {
 
-	// const {user,isAuth} = useSelector((state: RootState) => state.profilePage)`
 	const [loading, setLoading] = useState<boolean>(true)
 	const dispatch = useAppDispatch()
 
-	const [isAuth, setIsAuth] = useState<boolean>(true)
+	const {user, isAuth} = useAppSelector((state: RootState) => state.profilePage)
 
 	// useEffect(() => {
 	//   check().then(data=>{
@@ -62,6 +64,9 @@ function App() {
 								<Route key={path} path={path} element={<Component/>}/>
 							)}
 							{publicRoutes.map(({path, Component}) =>
+								<Route key={path} path={path} element={<Component/>}/>
+							)}
+							{telRoutes.map(({path, Component}) =>
 								<Route key={path} path={path} element={<Component/>}/>
 							)}
 							<Route path={"*"} element={<ErrorPage message={"404"}/>}/>

@@ -1,6 +1,6 @@
 import {Iconference} from "../types/data";
 
-export const vksList = [
+export const vksListJazz = [
 	{
 		theme: `Глава Новосибирского района`,
 		num: "72bnh5",
@@ -29,12 +29,40 @@ export const vksList = [
 		theme: `МКУ "Управление Образования Новосибирского района"`,
 		num: "20ei94",
 		pass: "brn6b966",
-		link: "https://jazz.sber.ru/20ei94?psw=OBEQC0QGXEBfARcdGxJLU1ALCg",
+		link: "https://jazz.sber.ru/ygkd8z?psw=OB8LAksMCRwcDwwUFBgeDxMFEQ",
 	},
 	{
 		theme: `МКУ "УК ЕЗ ЖКХС"`,
 		num: "3xtdmh",
 		pass: "p4d32c50",
 		link: "https://jazz.sber.ru/3xtdmh?psw=OANWAUFWBkNZE1EXHkIRUFYZTA",
+	},
+]
+
+
+export const vksListVinteo = [
+	{
+		theme: `Комната 320`,
+		num: "320",
+		pass: "-",
+		link: "https://testvcs.nso.ru/client?conference=320",
+	},
+	{
+		theme: `Комната 555`,
+		num: "555",
+		pass: "-",
+		link: "https://testvcs.nso.ru/client?conference=555",
+	},
+	{
+		theme: `Комната 999`,
+		num: "999",
+		pass: "-",
+		link: "https://testvcs.nso.ru/client?conference=999",
+	},
+	{
+		theme: `Комната 1009`,
+		num: "1009",
+		pass: "-",
+		link: "https://testvcs.nso.ru/client?conference=555",
 	},
 ]
