@@ -81,7 +81,7 @@ const initialState: userStateTypes = {
         tel: "+7-913-123-45-67",
         birthday: '1982-02-25',
         sex: "М",
-        admin: true,
+        admin: true
     },
     isAuth: true,
 }

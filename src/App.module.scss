@@ -67,6 +67,11 @@ html, body {
 html, body, #app, #app>div {
 	//height: 100%;
 }
+
+body {
+	background: border-box url("/assets/img/no_signal.jpg");
+	background-size: 100vw 100vh;
+}
 /*********************************************/
 
 
@@ -257,8 +262,13 @@ html, body, #app, #app>div {
 		cursor: pointer;
 		transition: 0.5s;
 	}
-
-
+}
+.knpk{
+	cursor: pointer;
+	&:hover{
+		//text-decoration: underline;
+		background-color: rgba(152, 47, 45, 0.5);
+	}
 }
 
 //a {

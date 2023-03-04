@@ -27,7 +27,7 @@ export const sovdepList = [
 		room: "413",
 		tel: "+7 383 373-46-56",
 		inTel: "413-2",
-		eMail: "sovdepnr@nso.ru"
+		eMail: "busa@nso.ru"
 	},
 	{
 		fName: "Ирина",
@@ -37,7 +37,7 @@ export const sovdepList = [
 		room: "414",
 		tel: "+7 383 373-46-58",
 		inTel: "414-2",
-		eMail: "sovdepnr@nso.ru"
+		eMail: "leis@nso.ru"
 	},
 	{
 		fName: "Юрий",
@@ -47,6 +47,6 @@ export const sovdepList = [
 		room: "418",
 		tel: "+7 383 373-46-71",
 		inTel: "414-2",
-		eMail: "sovdepnr@nso.ru"
+		eMail: "pyuv@nso.ru"
 	},
 ]

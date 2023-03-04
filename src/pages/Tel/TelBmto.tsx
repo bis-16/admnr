@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom'
 import {ERROR_ROUTE} from "../../const";
+import {TelTable} from "./TelTable";
+import {bmtoList} from "../../assets/tel/bmto-list";
 
 const TelBmto = () => {
 
@@ -9,7 +11,7 @@ const TelBmto = () => {
 
 	return (
 		<div>
-
+			<TelTable arr={bmtoList}/>
 		</div>
 	)
 
