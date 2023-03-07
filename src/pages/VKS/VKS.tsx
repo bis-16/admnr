@@ -29,22 +29,22 @@ const VksCard: FC<CardProps> = ({conference}) => {
 
 const VKS = () => {
 
-	const [isOpen0, setOpen0] = useState<boolean>(false)
-	const [isOpen1, setOpen1] = useState<boolean>(false)
+	const [isOpenAdm, setOpenAdm] = useState<boolean>(false)
+	const [isOpenNSO, setOpenNSO] = useState<boolean>(false)
 
 	return (
 		<div className={s0.wrapper__vks}>
 
 			<div className={s0.btn}
 					 onClick={() => {
-						 setOpen0(!isOpen0)
+						 setOpenAdm(!isOpenAdm)
 					 }}
 			>
 				ВКС администрации Новосибирского района (СберДжаз)
-				<img src={isOpen0 ? arrowUp : arrowDown} className={s.vks__arrow}/>
+				<img src={isOpenAdm ? arrowUp : arrowDown} className={s0.btn__arrow}/>
 			</div>
 
-			<div className={`${s.cards} ${isOpen0 ? '' : s0.visuallyHidden}`}>
+			<div className={`${s.cards} ${isOpenAdm ? '' : s0.visuallyHidden}`}>
 				{vksListJazz.map((conference, index) => (
 						<VksCard key={conference.num}
 										 conference={conference}
@@ -55,13 +55,13 @@ const VKS = () => {
 
 			<div className={s0.btn}
 					 onClick={() => {
-						 setOpen1(!isOpen1)
+						 setOpenNSO(!isOpenNSO)
 					 }}
 			>
 				ВКС правительства Новосибирской области (Vinteo)
-				<img src={isOpen1 ? arrowUp : arrowDown} className={s.vks__arrow}/>
+				<img src={isOpenNSO ? arrowUp : arrowDown} className={s0.btn__arrow}/>
 			</div>
-			<div className={`${s.cards} ${isOpen1 ? '' : s0.visuallyHidden}`}>
+			<div className={`${s.cards} ${isOpenNSO ? '' : s0.visuallyHidden}`}>
 				{vksListVinteo.map((conference, index) => (
 						<VksCard key={conference.num}
 										 conference={conference}

@@ -6,6 +6,7 @@ import {useNavigate} from "react-router-dom";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {RootState} from "../../store/store";
 import {AUTH_ROUTE, version} from "../../const";
+import AdminBar from "../AdminBar/AdminBar";
 
 const Header = () => {
 

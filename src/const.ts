@@ -1,4 +1,4 @@
-export const version = '0.1'
+export const version = '0.1. Код: "Альфа"'
 
 export const MAIN_ROUTE = '/'
 export const AUTH_ROUTE = '/login'

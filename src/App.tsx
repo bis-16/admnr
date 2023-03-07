@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import {useAppDispatch} from "./hooks/useAppDispatch";
@@ -13,10 +12,10 @@ import {authRoutes, publicRoutes, telRoutes} from "./routes"
 import {Route, Routes} from "react-router-dom";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import {Howl, Howler} from 'howler';
-// @ts-ignore
 import Eleonora from "./assets/sound/Eleonora.mp3";
 import {RootState} from "./store/store";
 import {useAppSelector} from "./hooks/useAppSelector";
+import AdminBar from "./components/AdminBar/AdminBar";
 
 const music = new Howl({
 	src: [Eleonora],
@@ -50,32 +49,31 @@ function App() {
 			{/*<div className={s0.effect}>*/}
 			<div className={s0.grain}>
 
-			<div className={`${s0.fullWindow}`}>
+				{isAuth && user.admin ? <AdminBar/> : ''}
 
+				<div className={`${s0.fullWindow}`}>
 
-				<Header/>
+					<Header/>
+					<div className={`${s0.wrapper__body}`}>
+						<NavBar music={music}/>
 
-				<div className={`${s0.wrapper__body}`}>
-					<NavBar music={music}/>
+						<PageWrapper>
+							<Routes>
+								{isAuth && authRoutes.map(({path, Component}) =>
+									<Route key={path} path={path} element={<Component/>}/>
+								)}
+								{publicRoutes.map(({path, Component}) =>
+									<Route key={path} path={path} element={<Component/>}/>
+								)}
+								{telRoutes.map(({path, Component}) =>
+									<Route key={path} path={path} element={<Component/>}/>
+								)}
+								<Route path={"*"} element={<ErrorPage message={"404"}/>}/>
+							</Routes>
+						</PageWrapper>
 
-					<PageWrapper>
-						<Routes>
-							{isAuth && authRoutes.map(({path, Component}) =>
-								<Route key={path} path={path} element={<Component/>}/>
-							)}
-							{publicRoutes.map(({path, Component}) =>
-								<Route key={path} path={path} element={<Component/>}/>
-							)}
-							{telRoutes.map(({path, Component}) =>
-								<Route key={path} path={path} element={<Component/>}/>
-							)}
-							<Route path={"*"} element={<ErrorPage message={"404"}/>}/>
-						</Routes>
-					</PageWrapper>
-
-				</div>
-
-				{/*<Footer/>*/}
+					</div>
+					{/*<Footer/>*/}
 				</div>
 				{/*</div>*/}
 				{/*</div>*/}

@@ -26,11 +26,11 @@ export interface Iuser {
     admin: boolean,
 }
 
-export interface Iprorgam {
-    programID: number,
-    name: string,
-    version: number | string,
-}
+// export interface Iprorgam {
+//     programID: number,
+//     // name: string,
+//     version: number | string,
+// }
 
 export interface Iemp {
       photo?: string,
@@ -47,15 +47,21 @@ export interface Iemp {
 
 export interface Ikey {
     keyID: number,
-    program: Iprorgam
+    software: Isoftware
     key: string,
     userFName: string,
     userMName: string,
-    userSName: string,
+    userLName: string,
     sb: number,
     inventory: string,
     setupDate: string,
     expDate: string,
+}
+
+export interface Isoftware {
+  id: number,
+  name: string,
+  version: number | string,
 }
 
 export interface Iroute{

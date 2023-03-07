@@ -5,8 +5,8 @@ import adminPageButtonMaker from "./adminPageButtonMaker";
 const Admin = () => {
 
 	const Emp = <>
-		{adminPageButtonMaker("Добавить сотрудника", true, console.log, "click emp add btn")}
-		{adminPageButtonMaker("Удалить сотрудника", false, console.log, "click emp del btn")}
+		{adminPageButtonMaker("Добавить абонента", true, console.log, "click emp add btn")}
+		{adminPageButtonMaker("Удалить абонента", false, console.log, "click emp del btn")}
 	</>
 	const Service = <>
 		{adminPageButtonMaker("Добавить услугу", true, console.log, "click service add btn")}
@@ -21,6 +21,7 @@ const Admin = () => {
 
 			<h3 className={"mt-4"}>Услуги:</h3>
 			{Service}
+
 		</div>
 	);
 };

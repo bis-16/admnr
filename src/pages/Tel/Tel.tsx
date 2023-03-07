@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {
 	TEL_ROUTE,
@@ -11,8 +11,11 @@ import {
 } from "../../const";
 import s0 from '../../App.module.scss'
 import s from './Tel.module.scss'
-import {telRoutes} from '../../routes'
+import {telRoutes, telRoutes_Ss} from '../../routes'
 import styleTable from "../Keys/Keys.module.scss";
+import arrowUp from "../../assets/img/arrow_white_up.png";
+import arrowDown from "../../assets/img/arrow_white_down.png";
+import {vksListVinteo} from "../../assets/vks-list";
 
 const BtnGenerator = () => {
 
@@ -22,45 +25,59 @@ const BtnGenerator = () => {
 const Tel = () => {
 	const navigate = useNavigate()
 
+	const [isOpenSs, setOpenSs] = useState<boolean>(false)
+
 	return (
-		<div>
-			{/*<table className={styleTable.table}>*/}
+		<div className={s0.wrapper__tel}>
+			{telRoutes.map((item, index) => (
+					<div className={`${s0.btn}`}
+							 onClick={() => {
+								 navigate(item.path)
+							 }}
+					>
+						{item.disable
+							? <div>
+								<span style={{color: "darkred"}}>[ ОТКЛ ] </span>
+								<span style={{color: "darkred"}}>{item.name}</span>
+							</div>
+							: item.name}
+					</div>
+				)
+			)}
 
-			{/*	<thead>*/}
-			{/*	<tr>*/}
-			{/*		<th className={``}>Фамилия</th>*/}
-			{/*		<th className={``}>Имя</th>*/}
-			{/*	</tr>*/}
-			{/*	</thead>*/}
+			<div>
+			<div className={s0.btn}
+					 onClick={() => {
+						 setOpenSs(!isOpenSs)
+					 }}
+			>
+				Cельсоветы Новосибирского района
+				<img src={isOpenSs ? arrowUp : arrowDown} className={s0.btn__arrow}/>
+			</div>
+			{telRoutes_Ss.map((item, index) => (
+					<div>
 
-			{/*	<tbody>*/}
-				{telRoutes.map((item, index) => (
-					// <tr>
-						<div className={`${s0.btn}`}
-								 onClick={() => {
-									 navigate(item.path)
-								 }}
-						>
+						<div className={`${s.cards} ${isOpenSs ? '' : s0.visuallyHidden}`}>
 
-								{/*<td className={styleTable.center}>*/}
-									{item.disable
-										? <div>
-												<span style={{color:"darkred"}}>[ ОТКЛ ] </span>
-												<span style={{color:"darkred"}}>{item.name}</span>
-											</div>
-										:	item.name}
-								{/*</td>*/}
-								{/*<td className={styleTable.center}>*/}
-								{/*</td>*/}
-								{/*<td className={styleTable.center}>*/}
-								{/*	{item.fullname}*/}
-								{/*</td>*/}
+							<div className={`${s0.btn}`}
+									 onClick={() => {
+										 navigate(item.path)
+									 }}
+							>
+								{item.disable
+									? <div>
+										<span style={{color: "darkred"}}>[ ОТКЛ ] </span>
+										<span style={{color: "darkred"}}>{item.name}</span>
+									</div>
+									: item.name}
+							</div>
+
 						</div>
-					// </tr>
-					)
-				)}
-				{/*</tbody>*/}
-			{/*</table>*/}
+					</div>
+				)
+			)}
+			</div>
+
 
 		</div>
 	);
