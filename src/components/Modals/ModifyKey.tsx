@@ -3,7 +3,7 @@ import {FC, useEffect, useState} from 'react';
 import {Button, Col, Dropdown, Form, Modal, Row} from "react-bootstrap";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {RootState} from "../../store/store";
-import {createKey, createSoft, fetchKeys, fetchSofts} from "../../api/keyAPI";
+import {createKey, createSoftare, fetchKeys, fetchSoftwares} from "../../api/keysAPI";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
 import {setKeys, setSoft} from "../../store/reducers/keys-reducer";
 import {Isoftware} from "../../types/data";
@@ -22,10 +22,7 @@ const ModifyKey: FC<ModifyKeyProps> = ({show, onHide}) => {
 
 	const {activeKey} = useAppSelector((state: RootState) => state.keysPage)
 
-
-	// const [selectedType, setSelectedType] = useState<Itype>({id: 0, name: "Выберите тип"})
-	// const [selectedBrand, setSelectedBrand] = useState<Ibrand>({id: 0, name: "Выберите брэнд"})
-	const [selectedSoft, setSelectedSoft] = useState<Isoftware>({id: 0, name: "Выберите ПО", version: "0",})
+	const [selectedSoft, setSelectedSoft] = useState<Isoftware>({id: 0, name: "Выберите ПО",})
 
 	// const [info, setInfo] = useState([])
 	const [key, setKey] = useState<string>('')
@@ -36,19 +33,16 @@ const ModifyKey: FC<ModifyKeyProps> = ({show, onHide}) => {
 	const [invNum, setInvNum] = useState<string>()
 	const [inDate, setInDate] = useState<string>()
 	const [outDate, setOutDate] = useState<string>()
-	// const [price, setPrice] = useState<number>(0)
-	// const [file, setFile] = useState<HTMLInputElement | null>(null)
 
-
-	useEffect(() => {
-		console.log("!!>!CreateKey.useEffect")
-		fetchSofts().then(value => {
-			dispatch(setSoft(value))
-		})
-		// fetchBrands().then(value => {
-		// 	dispatch(setBrands(value))
-		// })
-	}, [])
+	// useEffect(() => {
+	// 	console.log("!!>!CreateKey.useEffect")
+	// 	fetchSoftwares().then(value => {
+	// 		dispatch(setSoft(value))
+	// 	})
+	// 	// fetchBrands().then(value => {
+	// 	// 	dispatch(setBrands(value))
+	// 	// })
+	// }, [])
 
 	// const addInfo = () => {
 	// 	// @ts-ignore
@@ -76,7 +70,8 @@ const ModifyKey: FC<ModifyKeyProps> = ({show, onHide}) => {
 		formData.append('fName', fName)
 		formData.append('sName', sName)
 		formData.append('lName', lName)
-		formData.append('sbNum', sbNum)
+		formData.append('sb', sbNum)
+		formData.append('inv', invNum)
 		formData.append('inDate', inDate)
 		formData.append('outDate', outDate)
 		// formData.append('price', `${price}`)
@@ -88,7 +83,7 @@ const ModifyKey: FC<ModifyKeyProps> = ({show, onHide}) => {
 		formData.append('softId', selectedSoft.id)
 		// formData.append('info', JSON.stringify(info)) //массив низзя т.к. или строка или блоб. на сервере парсится обратно
 
-		createSoft(formData).then(data => onHide())
+		createSoftare(formData).then(data => onHide())
 	}
 
 	// const selectFile = (e: React.ChangeEvent) => {
@@ -118,14 +113,14 @@ const ModifyKey: FC<ModifyKeyProps> = ({show, onHide}) => {
 					<Modal.Body>
 						<Form>
 							<Dropdown className={"mt-3"}>
-								<Dropdown.Toggle>{activeKey.software.id}. {activeKey.software.name}</Dropdown.Toggle>
+								{/*<Dropdown.Toggle>{activeKey.software.id}. {activeKey.software.name}</Dropdown.Toggle>*/}
 								<Dropdown.Menu>
 									{keys.softwares.map(soft =>
 										<Dropdown.Item
 											onClick={() => {
 												console.log("selectedSoft.0=", selectedSoft)
 												console.log("soft=", soft)
-												setSelectedSoft({id: soft.id, name: soft.name, version: soft.version})
+												setSelectedSoft({id: soft.id, name: soft.name})
 												console.log("selectedSoft.1=", selectedSoft)
 											}
 											}>
@@ -144,19 +139,19 @@ const ModifyKey: FC<ModifyKeyProps> = ({show, onHide}) => {
 							<Form.Label className={""}>Введите имя пользователя</Form.Label>
 							<Form.Control
 								placeholder={"Введите имя:"}
-								value={activeKey.userFName}
+								value={activeKey.fName}
 								onChange={e => setFName(e.target.value)}
 							/>
 							<Form.Label className={""}>Введите отчество пользователя</Form.Label>
 							<Form.Control
 								placeholder={"Введите отчество:"}
-								value={activeKey.userMName}
+								value={activeKey.mName}
 								onChange={e => setSName(e.target.value)}
 							/>
 							<Form.Label className={""}>Введите фамилию пользователя</Form.Label>
 							<Form.Control
 								placeholder={"Введите фамилию:"}
-								value={activeKey.userLName}
+								value={activeKey.lName}
 								onChange={e => setLName(e.target.value)}
 							/>
 							<Form.Label className={""}>Введите порядковый номер устройства (SB***)</Form.Label>

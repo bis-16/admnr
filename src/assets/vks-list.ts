@@ -63,6 +63,12 @@ export const vksListVinteo = [
 		theme: `Комната 1009`,
 		num: "1009",
 		pass: "-",
-		link: "https://testvcs.nso.ru/client?conference=555",
+		link: "https://testvcs.nso.ru/client?conference=1009",
+	},
+	{
+		theme: `Комната 1324`,
+		num: "1324",
+		pass: "-",
+		link: "https://testvcs.nso.ru/client?conference=1324",
 	},
 ]

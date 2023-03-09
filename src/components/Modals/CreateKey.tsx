@@ -3,7 +3,7 @@ import {FC, useEffect, useState} from 'react';
 import {Button, Col, Dropdown, Form, Modal, Row} from "react-bootstrap";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {RootState} from "../../store/store";
-import {createKey, createSoft, fetchKeys, fetchSofts} from "../../api/keyAPI";
+import {createKey, createSoftare, fetchKeys, fetchSoftwares} from "../../api/keysAPI";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
 import {setKeys, setSoft} from "../../store/reducers/keys-reducer";
 import {Isoftware} from "../../types/data";
@@ -21,7 +21,7 @@ const CreateKey: FC<CreateKeyProps> = ({show, onHide}) => {
 
 	// const [selectedType, setSelectedType] = useState<Itype>({id: 0, name: "Выберите тип"})
 	// const [selectedBrand, setSelectedBrand] = useState<Ibrand>({id: 0, name: "Выберите брэнд"})
-	const [selectedSoft, setSelectedSoft] = useState<Isoftware>({id: 0, name: "Выберите ПО", version: "0",})
+	const [selectedSoft, setSelectedSoft] = useState<Isoftware>({id: 0, name: "Выберите ПО",})
 
 	// const [info, setInfo] = useState([])
 	const [key, setKey] = useState<string>('')
@@ -32,13 +32,14 @@ const CreateKey: FC<CreateKeyProps> = ({show, onHide}) => {
 	const [invNum, setInvNum] = useState<string>()
 	const [inDate, setInDate] = useState<string>()
 	const [outDate, setOutDate] = useState<string>()
+	const [softVersion, setSoftVersion] = useState<string>()
 	// const [price, setPrice] = useState<number>(0)
 	// const [file, setFile] = useState<HTMLInputElement | null>(null)
 
 
 	useEffect(() => {
 		console.log("!!>!CreateKey.useEffect")
-		fetchSofts().then(value => {
+		fetchSoftwares().then(value => {
 			dispatch(setSoft(value))
 		})
 		// fetchBrands().then(value => {
@@ -67,24 +68,20 @@ const CreateKey: FC<CreateKeyProps> = ({show, onHide}) => {
 		console.log('selectedSoft.id=', selectedSoft.id)
 
 		const formData = new FormData()
-		// formData.append('name', name)
 		formData.append('key', key)
+		formData.append('softId', (selectedSoft.id))
+		formData.append('version', softVersion)
 		formData.append('fName', fName)
 		formData.append('mName', mName)
 		formData.append('lName', lName)
-		formData.append('sbNum', sbNum)
+		formData.append('sb', sbNum)
+		formData.append('inv', invNum)
 		formData.append('inDate', inDate)
 		formData.append('outDate', outDate)
-		// formData.append('price', `${price}`)
-		// formData.append('img', file)
-		// formData.append('typeId', selectedTypeID)
-		// formData.append('typeId', selectedType.id)
-		// formData.append('brandId', selectedBrand.id)
 		// @ts-ignore
-		formData.append('softId', selectedSoft.id)
 		// formData.append('info', JSON.stringify(info)) //массив низзя т.к. или строка или блоб. на сервере парсится обратно
 
-		createSoft(formData).then(data => onHide())
+		createKey(formData).then(data => onHide())
 	}
 
 	// const selectFile = (e: React.ChangeEvent) => {
@@ -106,7 +103,7 @@ const CreateKey: FC<CreateKeyProps> = ({show, onHide}) => {
 		>
 			<Modal.Header closeButton>
 				<Modal.Title id={"contained-modal-title-vcenter"}>
-					Добавить тип
+					Добавить ключ
 				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
@@ -117,16 +114,8 @@ const CreateKey: FC<CreateKeyProps> = ({show, onHide}) => {
 							{keys.softwares.map(soft =>
 								<Dropdown.Item
 									onClick={() => {
-										console.log("selectedSoft.0=",selectedSoft)
-										// console.log("selectedTypeID.0=",selectedTypeID)
-										// console.log("selectedTypeName.0=",selectedTypeName)
 										console.log("soft=",soft)
-										setSelectedSoft({id: soft.id, name: soft.name, version: soft.version})
-										// setSelectedTypeID(type.id)
-										// setSelectedTypeName(type.name)
-										console.log("selectedSoft.1=",selectedSoft)
-										// console.log("selectedTypeID.1=",selectedTypeID)
-										// console.log("selectedTypeName.1=",selectedTypeName)
+										setSelectedSoft({id: soft.id, name: soft.name})
 									}
 									}>
 									{soft.name}
@@ -134,91 +123,75 @@ const CreateKey: FC<CreateKeyProps> = ({show, onHide}) => {
 							)}
 						</Dropdown.Menu>
 					</Dropdown>
-					{/*<Dropdown className={"mt-3"}>*/}
-					{/*	<Dropdown.Toggle>{selectedBrand.name}</Dropdown.Toggle>*/}
-					{/*	<Dropdown.Menu>*/}
-					{/*		{devices.brands.map(brand =>*/}
-					{/*			<Dropdown.Item*/}
-					{/*				onClick={() => setSelectedBrand(brand)}*/}
-					{/*			>*/}
-					{/*				{brand.name}*/}
-					{/*			</Dropdown.Item>*/}
-					{/*		)}*/}
-					{/*	</Dropdown.Menu>*/}
-					{/*</Dropdown>*/}
-					<Form.Label className={""}>Введите ключ</Form.Label>
+
+					<Form.Label className={""}>Введите ключ:</Form.Label>
 					<Form.Control
-						placeholder={"Введите ключ:"}
+						placeholder={"Введите ключ"}
 						value={key}
-						onChange={e => setFName(e.target.value)}
+						onChange={e => setKey(e.target.value)}
 					/>
-					<Form.Label className={""}>Введите имя пользователя</Form.Label>
+
+					<Form.Label className={""}>Введите версию ПО:</Form.Label>
 					<Form.Control
-						placeholder={"Введите имя:"}
+						placeholder={"Введите версию ПО"}
+						value={softVersion}
+						onChange={e => setSoftVersion(e.target.value)}
+					/>
+
+					<Form.Label className={""}>Введите имя пользователя:</Form.Label>
+					<Form.Control
+						placeholder={"Введите имя"}
 						value={fName}
 						onChange={e => setFName(e.target.value)}
 					/>
-					<Form.Label className={""}>Введите отчество пользователя</Form.Label>
+
+					<Form.Label className={""}>Введите отчество пользователя:</Form.Label>
 					<Form.Control
-						placeholder={"Введите отчество:"}
+						placeholder={"Введите отчество"}
 						value={mName}
 						onChange={e => setMName(e.target.value)}
 					/>
-					<Form.Label className={""}>Введите фамилию пользователя</Form.Label>
+
+					<Form.Label className={""}>Введите фамилию пользователя:</Form.Label>
 					<Form.Control
-						placeholder={"Введите фамилию:"}
+						placeholder={"Введите фамилию"}
 						value={lName}
 						onChange={e => setLName(e.target.value)}
 					/>
-					<Form.Label className={""}>Введите порядковый номер устройства (SB***)</Form.Label>
-					sb
+
+					<Form.Label className={""}>Введите порядковый номер устройства (SB***):</Form.Label>
 					<Form.Control
 						placeholder={"Введите порядковый номер устройства (SB***)"}
 						type={"number"}
 						value={sbNum}
 						onChange={e => setSbNum(e.target.value)}
 					/>
+
+					<Form.Label className={""}>Введите инвентарный номер устройства:</Form.Label>
 					<Form.Control
-						placeholder={"Введите инвентарный номер устройства"}
-						type={"number"}
+						placeholder={"Введите инвентарный номер устройства:"}
+						// type={"number"}
 						value={invNum}
 						onChange={e => setInvNum(e.target.value)}
 					/>
-					{/*<Form.Label className={"mt-3"}>Введите стоимость устройства</Form.Label>*/}
-					{/*<Form.Control*/}
-					{/*	placeholder={"Введите стоимость устройства:"}*/}
-					{/*	type={"number"}*/}
-					{/*	value={price}*/}
-					{/*	onChange={e => setPrice(+e.target.value)}*/}
-					{/*/>*/}
-					{/*<Form.Control className={"mt-3"} type={"file"} onChange={selectFile}/>*/}
-					<hr/>
-					{/* this is разделительная черта */}
-					{/*<Button*/}
-					{/*	variant={"outline-dark"}*/}
-					{/*	onClick={addInfo}*/}
-					{/*>*/}
-					{/*	Добавить новое свойство*/}
-					{/*</Button>*/}
-					{/*{info.map(i =>*/}
-					{/*	<Row>*/}
-					{/*		<Col md={4}>*/}
-					{/*			<Form.Control placeholder={"Введите название свойства"}*/}
-					{/*										value={i.title}*/}
-					{/*										onChange={(e) => changeInfo('title', e.target.value, i.number)}*/}
-					{/*			/>*/}
-					{/*		</Col>*/}
-					{/*		<Col md={4}>*/}
-					{/*			<Form.Control placeholder={"Введите описание свойства"}*/}
-					{/*										value={i.description}*/}
-					{/*										onChange={(e) => changeInfo('description', e.target.value, i.number)}*/}
-					{/*			/>*/}
-					{/*		</Col>*/}
-					{/*		<Col md={4}>*/}
-					{/*			<Button variant={"outline-danger"}>Удалить</Button>*/}
-					{/*		</Col>*/}
-					{/*	</Row>*/}
-					{/*)}*/}
+
+					<Form.Label className={""}>Введите дату ввода ключа в эксплуатацию:</Form.Label>
+					<Form.Control
+						placeholder={"Введите дату ввода ключа в эксплуатацию"}
+						// type={"date"}
+						value={inDate}
+						onChange={e => setInDate(e.target.value)}
+					/>
+
+					<Form.Label className={""}>Введите дату вывода ключа в эксплуатацию:</Form.Label>
+					<Form.Control
+						placeholder={"Введите дату вывода ключа в эксплуатацию"}
+						// type={"date"}
+						value={outDate}
+						onChange={e => setOutDate(e.target.value)}
+					/>
+
+
 				</Form>
 			</Modal.Body>
 			<Modal.Footer>

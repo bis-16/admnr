@@ -1,6 +1,6 @@
 const Router = require('express')
 const router = new Router()
-const softController = require('../../controllers/keys/keyController')
+const keyController = require('../../controllers/keys/keyController')
 const checkRole = require('../../middleware/checkRoleMiddleware')
 
 router.post('/', keyController.create)

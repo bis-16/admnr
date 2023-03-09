@@ -331,6 +331,9 @@ body::-webkit-scrollbar-thumb {
 		cursor: pointer;
 		transition: 0.5s;
 	}
+	&_active {
+		background: rgba(152, 47, 45, 0.75);
+	}
 }
 .btn__arrow{
 	height: 30px;

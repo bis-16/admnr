@@ -46,22 +46,23 @@ export interface Iemp {
 }
 
 export interface Ikey {
-    keyID: number,
+    id: number,
     software: Isoftware
     key: string,
-    userFName: string,
-    userMName: string,
-    userLName: string,
+  version: number | string,
+    fName: string,
+    mName: string,
+    lName: string,
     sb: number,
-    inventory: string,
-    setupDate: string,
-    expDate: string,
+    inv: string,
+    inDate: string,
+    outDate: string,
 }
 
 export interface Isoftware {
   id: number,
   name: string,
-  version: number | string,
+  // version: number | string,
 }
 
 export interface Iroute{

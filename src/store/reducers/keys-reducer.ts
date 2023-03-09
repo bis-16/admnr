@@ -1,6 +1,7 @@
 import {Ikey, Isoftware} from "../../types/data";
 
 enum KeyActionTypes {
+	SET_KEY = "SET_KEY",
 	SET_KEYS = "SET_KEYS",
 	SET_ADD_KEY = "SET_ADD_KEY",
 	SET_DEL_KEY = "SET_DEL_KEY",
@@ -13,6 +14,9 @@ enum KeyActionTypes {
 	SET_EDIT_SOFT = "SET_EDIT_SOFT",
 	SET_ACTIVE_SOFT = "SET_ACTIVE_SOFT",
 
+	SET_TOTAL_COUNT = "SET_TOTAL_COUNT",
+	SET_PAGE = "SET_PAGE",
+
 }
 
 /**********************************************************************************************************************/
@@ -23,14 +27,25 @@ enum KeyActionTypes {
 // }
 
 interface keysStateTypes {
-	softwares: Isoftware[]
-	keys: Ikey[]
-	activeKey: Ikey | null
+	softwares: Isoftware[],
+	keys: Ikey[],
+	activeKey: Ikey | null,
+	activeSoftId: number,
+	pagination: {
+		currentPage: number,
+		totalCount: number,
+		limit: number
+	}
+}
+
+interface IsetKey {
+	type: KeyActionTypes.SET_KEY
+	payload: number
 }
 
 interface IsetKeys {
 	type: KeyActionTypes.SET_KEYS
-	payload: number
+	payload: Ikey[]
 }
 
 interface IsetAddKey {
@@ -73,6 +88,14 @@ interface IsetActiveSoft {
 	payload: number
 }
 
+interface IsetTotalCount {
+	type: KeyActionTypes.SET_TOTAL_COUNT
+	payload: number
+}
+interface IsetPage {
+	type: KeyActionTypes.SET_PAGE
+	payload: number
+}
 
 /**********************************************************************************************************************/
 
@@ -85,12 +108,18 @@ type keyActionTypes = IsetKeys
 	| IsetAddSoft
 	| IsetDelSoft
 	| IsetActiveSoft
+	| IsetTotalCount
+	| IsetPage
 
 /**********************************************************************************************************************/
 
-export const setKeys = (keyID: number) => ({
+export const setKey = (keyID: number) => ({
 	type: KeyActionTypes.SET_KEYS,
 	payload: keyID
+} as const)
+export const setKeys = (keys: Ikey[]) => ({
+	type: KeyActionTypes.SET_KEYS,
+	payload: keys
 } as const)
 export const setAddKey = (keyID: number) => ({
 	type: KeyActionTypes.SET_ADD_KEY,
@@ -122,7 +151,7 @@ export const setDelSoft = (softwares: Isoftware[]) => ({
 	payload: softwares
 } as const)
 
-export const setActiveSoft = (softID: number) => ({
+export const setActiveSoftware = (softID: number) => ({
 	type: KeyActionTypes.SET_ACTIVE_SOFT,
 	payload: softID
 } as const)
@@ -132,44 +161,58 @@ export const setActiveSoft = (softID: number) => ({
 const initialState: keysStateTypes = {
 	// @ts-ignore
 	softwares: [
-		{id: 101, name: "Крипто Про", version: "4.0"},
-		{id: 102, name: "Крипто Арм", version: ''},
+		{
+			id: 101,
+			name: "Крипто Про",
+			// version: "4.0"
+		},
+		{
+			id: 102,
+			name: "Крипто Арм",
+			// version: ''
+		},
 	],
 	keys: [
 		{
-			keyID: 0,
+			id: 0,
 			software: {
 				id: 101,
 				name: "Крипто Про",
-				version: "4.0"
 			},
+			version: "4.0",
 			key: "xxx-xxx-xxx-xxx-xxx",
-			userFName: "Василий",
-			userMName: "Иванович",
-			userLName: "Пупкин",
+			fName: "Василий",
+			mName: "Иванович",
+			lName: "Пупкин",
 			sb: 13,
-			inventory: "ВА9231",
-			setupDate: '13.02.2022',
-			expDate: '-',
+			inv: "ВА9231",
+			inDate: '13.02.2022',
+			outDate: '-',
 		},
 		{
-			keyID: 1,
+			id: 1,
 			software: {
 				id: 101,
 				name: "Крипто Про",
-				version: "4.0"
 			},
+			version: "4.0",
 			key: "xxx-xxx-xxx-xxx-xxx",
-			userFName: "Татьяна",
-			userMName: "Петровна",
-			userLName: "Иванова",
+			fName: "Татьяна",
+			mName: "Петровна",
+			lName: "Иванова",
 			sb: 13,
-			inventory: "ВА9231",
-			setupDate: '13.02.2023',
-			expDate: '-',
+			inv: "ВА9231",
+			inDate: '13.02.2023',
+			outDate: '-',
 		},
 	],
-	activeKey: null
+	activeKey: null,
+	activeSoftId: 0,
+	pagination: {
+		currentPage: 1,
+		totalCount: 1,
+		limit: 3
+	}
 }
 
 /**********************************************************************************************************************/
@@ -179,8 +222,10 @@ export default function keysReducer(state: keysStateTypes = initialState, action
 	switch (action.type) {
 		case KeyActionTypes.SET_KEYS:
 			console.log('KeyActionTypes.SET_KEYS=', KeyActionTypes.SET_KEYS)
+			console.log('KeyActionTypes.SET_KEYS.action.payload=', action.payload)
 			return {
 				...state,
+				keys: [...action.payload],
 			}
 		case KeyActionTypes.SET_ADD_KEY:
 			console.log('KeyActionTypes.SET_ADD_KEY=', KeyActionTypes.SET_ADD_KEY)
@@ -207,6 +252,8 @@ export default function keysReducer(state: keysStateTypes = initialState, action
 			console.log('KeyActionTypes.SET_KEYS=', KeyActionTypes.SET_KEYS)
 			return {
 				...state,
+				// @ts-ignore
+				softwares: [...action.payload]
 			}
 		case KeyActionTypes.SET_ADD_SOFT:
 			console.log('KeyActionTypes.SET_ADD_SOFT=', KeyActionTypes.SET_ADD_SOFT)
@@ -218,6 +265,23 @@ export default function keysReducer(state: keysStateTypes = initialState, action
 			return {
 				...state,
 			}
+
+		case KeyActionTypes.SET_ACTIVE_SOFT:
+			console.log('KeyActionTypes.SET_ACTIVE_SOFT=', KeyActionTypes.SET_ACTIVE_SOFT)
+			return {
+				...state,
+				activeSoftId: action.payload
+			}
+
+		case KeyActionTypes.SET_TOTAL_COUNT:
+			return {
+				...state,
+				pagination: {
+					...state.pagination,
+					totalCount: action.payload,
+				}
+			}
+
 
 			return {
 				...state,

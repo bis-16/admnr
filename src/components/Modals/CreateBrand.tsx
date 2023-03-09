@@ -1,7 +1,7 @@
 import * as React from "react";
 import {FC, useState} from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
-import {createSoft} from "../../api/keyAPI";
+import {createSoftare} from "../../api/keysAPI";
 
 interface CreateDeviceProps {
 	show: boolean,
@@ -13,7 +13,7 @@ const CreateSoft: FC<CreateDeviceProps> = ({show, onHide}) => {
 	const [value, setValue] = useState<string>('')
 
 	const addBrand = () => {
-		createSoft({name: value}).then(() => {
+		createSoftare({name: value}).then(() => {
 			setValue('')
 			onHide()
 		})
