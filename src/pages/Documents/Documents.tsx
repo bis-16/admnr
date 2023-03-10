@@ -22,6 +22,11 @@ const Documents = () => {
         <div>Договор ответственного хранения</div>
       </a>
 
+      <a href={process.env.PUBLIC_URL + '/docs/23_заявка_закуп.docx'} className={s0.doc}>
+        <img src={doc} className={s0.img} alt="Документ"/>
+        <div>Заявка на заключение контракта</div>
+      </a>
+
     </div>
   );
 };

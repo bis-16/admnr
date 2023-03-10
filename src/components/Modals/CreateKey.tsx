@@ -3,7 +3,7 @@ import {FC, useEffect, useState} from 'react';
 import {Button, Col, Dropdown, Form, Modal, Row} from "react-bootstrap";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {RootState} from "../../store/store";
-import {createKey, createSoftare, fetchKeys, fetchSoftwares} from "../../api/keysAPI";
+import {createKey, createSoftware, fetchKeys, fetchSoftwares} from "../../api/keysAPI";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
 import {setKeys, setSoft} from "../../store/reducers/keys-reducer";
 import {Isoftware} from "../../types/data";

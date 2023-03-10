@@ -15,15 +15,21 @@ import {Ikey} from "../types/data";
 
 /* ****************************************************************************************************************** */
 
-export const createSoftare = async (soft: any) => {
+export const createSoftware = async (soft: any) => {
 	const response = await $authHost.post('api/keys/soft', soft)
+	return response.data
+}
+export const deleteSoftware = async (softId: number) => {
+	const response = await $authHost.delete('api/keys/soft/' + softId)
 	return response.data
 }
 
 export const fetchSoftwares = async () => {
-	// console.log("fetchSoftwares 1")
 	const response = await $host.get('api/keys/soft')
-	// console.log("fetchSoftwares 2 > response", response)
+	return response.data
+}
+export const fetchOneSoftware = async (softId: number) => {
+	const response = await $host.get('api/keys/soft/' + softId)
 	return response.data
 }
 

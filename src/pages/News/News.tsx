@@ -1,9 +1,14 @@
 import React from 'react';
+import Story from "./Story";
 
 const News = () => {
   return (
     <div>
-      News
+      <Story/>
+      <Story/>
+      <Story/>
+      <Story/>
+      <Story/>
     </div>
   );
 };
