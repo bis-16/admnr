@@ -9,12 +9,12 @@ import {setKeys, setSoft} from "../../store/reducers/keys-reducer";
 import {Isoftware} from "../../types/data";
 import s0 from "../../App.module.scss"
 
-interface CreateKeyProps {
+interface CreateEmpProps {
 	show: boolean,
 	onHide: () => void,
 }
 
-const CreateKey: FC<CreateKeyProps> = ({show, onHide}) => {
+const CreateEmployee: FC<CreateEmpProps> = ({show, onHide}) => {
 
 	const dispatch = useAppDispatch()
 	const keys = useAppSelector((state: RootState) => state.keysPage)
@@ -202,4 +202,4 @@ const CreateKey: FC<CreateKeyProps> = ({show, onHide}) => {
 	);
 };
 
-export default CreateKey;
+export default CreateEmployee;

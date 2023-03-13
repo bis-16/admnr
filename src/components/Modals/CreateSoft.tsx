@@ -3,12 +3,12 @@ import {FC, useState} from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
 import {createSoftware} from "../../api/keysAPI";
 
-interface CreateDeviceProps {
+interface CreateSoftProps {
 	show: boolean,
 	onHide: () => void,
 }
 
-const CreateSoft: FC<CreateDeviceProps> = ({show, onHide}) => {
+const CreateSoft: FC<CreateSoftProps> = ({show, onHide}) => {
 
 	const [value, setValue] = useState<string>('')
 

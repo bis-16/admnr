@@ -1,3 +1,5 @@
+import {Idepartament} from "../../types/data";
+
 enum EmployeesActionTypes {
     SET_ALL_EMPLOYEES = "SET_ALL_EMPLOYEES",
     SET_LIST_EMPLOYEES = "SET_LIST_EMPLOYEES",
@@ -6,6 +8,9 @@ enum EmployeesActionTypes {
     SET_CURRENT_PAGE = "SET_CURRENT_PAGE",
     SET_EMPLOYEE = "SET_EMPLOYEE",
     SET_LOADING = "SET_LOADING",
+
+    SET_DEPARTMENT = "SET_DEPARTMENT",
+    SET_DEPARTMENTS = "SET_DEPARTMENTS",
 }
 
 /**********************************************************************************************************************/
@@ -50,6 +55,16 @@ interface IsetEmployee {
     type: EmployeesActionTypes.SET_EMPLOYEE;
     payload: any;
 }
+
+interface IsetDepartment {
+    type: EmployeesActionTypes.SET_DEPARTMENT;
+    payload: any;
+}
+interface IsetDepartments {
+    type: EmployeesActionTypes.SET_DEPARTMENTS;
+    payload: any;
+}
+
 interface IsetLoading {
     type: EmployeesActionTypes.SET_LOADING;
     payload: boolean;
@@ -58,10 +73,11 @@ interface IsetLoading {
 interface employeesStateTypes {
     // count: number;
     employees: Iemployee[];
-    loading: boolean;
-    totalEmpsCount: number;
-    pageSize: number;
-    currentPage: number;
+    departments: Idepartament[];
+    // loading: boolean;
+    // totalEmpsCount: number;
+    // pageSize: number;
+    // currentPage: number;
 }
 
 /**********************************************************************************************************************/
@@ -73,15 +89,18 @@ type employeesActionTypes = IsetEmployees
     | IsetCurrentEmployees
     | IsetMoreEmployees
     | IsetLoading
+    | IsetDepartment
+    | IsetDepartments
 
 /**********************************************************************************************************************/
 
 const initialState: employeesStateTypes = {
-    totalEmpsCount: 0,
+    // totalEmpsCount: 0,
     employees: [],
-    loading: true,
-    pageSize: 6,
-    currentPage: 1,
+    departments: [],
+    // loading: true,
+    // pageSize: 6,
+    // currentPage: 1,
 }
 
 /**********************************************************************************************************************/
@@ -89,6 +108,10 @@ const initialState: employeesStateTypes = {
 export const setEmployees = (employees: employeesStateTypes) => ({
     type: EmployeesActionTypes.SET_ALL_EMPLOYEES,
     payload: employees
+} as const)
+export const setDepartments = (departments: employeesStateTypes) => ({
+    type: EmployeesActionTypes.SET_DEPARTMENTS,
+    payload: departments
 } as const)
 export const setListEmployees = (employees: employeesStateTypes) => ({
     type: EmployeesActionTypes.SET_LIST_EMPLOYEES,
@@ -121,77 +144,85 @@ export const setLoading = (boolean: boolean) => ({
 /**********************************************************************************************************************/
 
 export default function employeesReducer(state: employeesStateTypes = initialState, action: employeesActionTypes): employeesStateTypes {
-    let emps: Iemployee[] = []
+    // let emps: Iemployee[] = []
     switch (action.type) {
-        case EmployeesActionTypes.SET_ALL_EMPLOYEES:
-            console.log("action.payload.TotalCount=", action.payload.totalCount)
+        // case EmployeesActionTypes.SET_ALL_EMPLOYEES:
+        //     console.log("action.payload.TotalCount=", action.payload.totalCount)
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //         employees: action.payload.doctors,
+        //         totalEmpsCount: action.payload.totalCount,
+        //     }
+        case EmployeesActionTypes.SET_DEPARTMENTS:
+            console.log("SET_DEPARTAMENTS.action.payload=", action.payload)
             return {
                 ...state,
-                loading: false,
-                employees: action.payload.doctors,
-                totalEmpsCount: action.payload.totalCount,
-            }
-        case EmployeesActionTypes.SET_LIST_EMPLOYEES:
-            console.log("action.payload.TotalCount=", action.payload.totalCount)
-            return {
-                ...state,
-                loading: false,
-                employees: action.payload.doctors,
-                totalEmpsCount: action.payload.totalCount,
-            }
-        case EmployeesActionTypes.SET_CURRENT_EMPLOYEES:
-            // console.log("action.payload.doctors=", action.payload.doctors)
-            action.payload.doctors.map((doctor, index) => {
-                if (index >= (state.currentPage - 1) * state.pageSize && index <= (state.currentPage - 1) * state.pageSize + state.pageSize - 1) {
-                    emps.push(doctor)
-                }
-
-            })
-            console.log("doctorsPageArr=", emps)
-            return {
-                ...state,
-                loading: false,
-                employees: emps,
-                totalEmpsCount: action.payload.totalCount,
-            }
-
-        case EmployeesActionTypes.SET_MORE_EMPLOYEES:
-            console.log("set_more_employees");
-            action.payload.doctors.map((doctor, index) => {
-                if (index >= (state.currentPage - 1) * state.pageSize && index <= (state.currentPage - 1) * state.pageSize + state.pageSize - 1) {
-                    emps.push(doctor)
-                }
-            })
-            return {
-                ...state,
-                loading: false,
-                employees: [...state.employees, ...emps],
-                // currentPage: action.payload.
+                // loading: false,
+                departments: action.payload,
                 // totalEmpsCount: action.payload.totalCount,
             }
-
-        case EmployeesActionTypes.SET_CURRENT_PAGE:
-            console.log("action.payload=", action.payload);
-            console.log("action.payload.currentPage=", action.payload.currentPage);
-            return {
-                ...state,
-                currentPage: action.payload.currentPage
-            }
-
-        case EmployeesActionTypes.SET_EMPLOYEE:                   //not used, not worked
-            return {
-                ...state,
-
-                loading: false,
-                employees: action.payload.doctors,
-                // totalCount: action.payload.totalCount,
-            }
-
-        case EmployeesActionTypes.SET_LOADING:
-            return {
-                ...state,
-                loading: action.payload,
-            }
+        // case EmployeesActionTypes.SET_LIST_EMPLOYEES:
+        //     console.log("action.payload.TotalCount=", action.payload.totalCount)
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //         employees: action.payload.doctors,
+        //         totalEmpsCount: action.payload.totalCount,
+        //     }
+        // case EmployeesActionTypes.SET_CURRENT_EMPLOYEES:
+        //     // console.log("action.payload.doctors=", action.payload.doctors)
+        //     action.payload.doctors.map((doctor, index) => {
+        //         if (index >= (state.currentPage - 1) * state.pageSize && index <= (state.currentPage - 1) * state.pageSize + state.pageSize - 1) {
+        //             emps.push(doctor)
+        //         }
+        //
+        //     })
+        //     console.log("doctorsPageArr=", emps)
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //         employees: emps,
+        //         totalEmpsCount: action.payload.totalCount,
+        //     }
+        //
+        // case EmployeesActionTypes.SET_MORE_EMPLOYEES:
+        //     console.log("set_more_employees");
+        //     action.payload.doctors.map((doctor, index) => {
+        //         if (index >= (state.currentPage - 1) * state.pageSize && index <= (state.currentPage - 1) * state.pageSize + state.pageSize - 1) {
+        //             emps.push(doctor)
+        //         }
+        //     })
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //         employees: [...state.employees, ...emps],
+        //         // currentPage: action.payload.
+        //         // totalEmpsCount: action.payload.totalCount,
+        //     }
+        //
+        // case EmployeesActionTypes.SET_CURRENT_PAGE:
+        //     console.log("action.payload=", action.payload);
+        //     console.log("action.payload.currentPage=", action.payload.currentPage);
+        //     return {
+        //         ...state,
+        //         currentPage: action.payload.currentPage
+        //     }
+        //
+        // case EmployeesActionTypes.SET_EMPLOYEE:                   //not used, not worked
+        //     return {
+        //         ...state,
+        //
+        //         loading: false,
+        //         employees: action.payload.doctors,
+        //         // totalCount: action.payload.totalCount,
+        //     }
+        //
+        // case EmployeesActionTypes.SET_LOADING:
+        //     return {
+        //         ...state,
+        //         loading: action.payload,
+        //     }
 
         default:
             return state

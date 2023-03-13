@@ -168,6 +168,7 @@ body::-webkit-scrollbar-thumb {
 
 	.buttonsBlock{
 		display: flex;
+		border: 1px white solid;
 	}
 }
 .adminBar__arrow{
@@ -314,6 +315,12 @@ body::-webkit-scrollbar-thumb {
 	align-items: center;
 	justify-content: center;
 
+}
+
+.wrapper__devbar{
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
 
 .btn {

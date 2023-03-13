@@ -3,6 +3,7 @@ import thunkMiddleware from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 import userReducer from "./reducers/user-reducer";
 import keysReducer from "./reducers/keys-reducer";
+import employeesReducer from "./reducers/employees-reducer";
 
 const rootReducer = combineReducers({
   // employeesPage: employeesReducer,
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
   // errorMessagePage: errorReducer,
   profilePage: userReducer,
   keysPage: keysReducer,
+  telsPage: employeesReducer,
 })
 
 

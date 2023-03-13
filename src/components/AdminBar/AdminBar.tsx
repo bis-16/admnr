@@ -2,16 +2,20 @@ import React, {useState} from 'react';
 import s0 from '../../App.module.scss'
 import CreateDevice from "../Modals/CreateKey";
 import CreateKey from "../Modals/CreateKey";
-import CreateSoft from "../Modals/CreateBrand";
+import CreateSoft from "../Modals/CreateSoft";
 import arrowUp from "../../assets/img/arrow_white_up.png"
 import arrowDown from "../../assets/img/arrow_white_down.png"
 import {isVisible} from "@testing-library/user-event/dist/utils";
+import CreateDepartment from "../Modals/CreateDepartment";
+import CreateEmployee from "../Modals/CreateEmployee";
 
 const AdminBar = () => {
 
 	/* modals */
 	const [softVisible, setSoftVisible] = useState<boolean>(false)
 	const [keyVisible, setKeyVisible] = useState<boolean>(false)
+	const [departmentVisible, setDepartmentVisible] = useState<boolean>(false)
+	const [empVisible, setEmpVisible] = useState<boolean>(false)
 
 	const [barVisible, setBarVisible] = useState<boolean>(true)
 
@@ -67,8 +71,13 @@ const AdminBar = () => {
 				</div>
 
 				{/*<div className={s0.buttonsBlock}>*/}
-				<div className={s0.btn}>
-					[ ОТКЛ ] Добавить абонента (Адм)
+				<div className={s0.buttonsBlock}>
+					<div className={s0.btn}>
+						[ ОТКЛ ] Добавить абонента (Адм)
+					</div>
+					<div className={s0.btn}>
+						[ ОТКЛ ] Добавить подразделение (Адм)
+					</div>
 				</div>
 				{/*<div className={s0.btn}>*/}
 				{/*	[ОТКЛ] Удалить абонента (Адм)*/}
@@ -78,6 +87,8 @@ const AdminBar = () => {
 
 				<CreateSoft show={softVisible} onHide={() => setSoftVisible(false)}/>
 				<CreateKey show={keyVisible} onHide={() => setKeyVisible(false)}/>
+				<CreateDepartment show={departmentVisible} onHide={() => setDepartmentVisible(false)}/>
+				<CreateEmployee show={empVisible} onHide={() => setEmpVisible(false)}/>
 			</div>
 		</div>
 	);

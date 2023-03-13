@@ -16,6 +16,7 @@ import Eleonora from "./assets/sound/Eleonora.mp3";
 import {RootState} from "./store/store";
 import {useAppSelector} from "./hooks/useAppSelector";
 import AdminBar from "./components/AdminBar/AdminBar";
+import DevBar from "./components/DevBar/DevBar";
 
 const music = new Howl({
 	src: [Eleonora],
@@ -79,6 +80,7 @@ function App() {
 				{/*</div>*/}
 				{/*</div>*/}
 			</div>
+			<DevBar />
 		</div>
 	);
 }

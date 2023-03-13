@@ -40,7 +40,7 @@ export const createKey = async (key: Ikey[]) => {
 	return response.data
 }
 
-export const fetchKeys = async (softID = 0,  page, limit = 5) => {
+export const fetchKeys = async (softID = 0,  page: number, limit = 5) => {
 	// console.group()
 	// console.log("fetchDevices > typeID =", typeID)
 	// console.log("fetchDevices > brandID =", brandID)

@@ -34,7 +34,7 @@ const {DataTypes} = require('sequelize')
 //     name: {type: DataTypes.STRING, unique: true, allowNull: false},
 // })
 
-//!!!
+//keys
 const Key = sequelize.define('key', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     key: {type: DataTypes.STRING, unique: true, allowNull: false},
@@ -53,7 +53,39 @@ const Key = sequelize.define('key', {
 const Soft = sequelize.define('soft', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique: true, allowNull: false},
+})
+
+//tels
+const Emp = sequelize.define('emp', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    // key: {type: DataTypes.STRING, unique: true, allowNull: false},
     // version: {type: DataTypes.STRING, allowNull: false},
+
+    fName: {type: DataTypes.STRING, allowNull: false},
+    mName: {type: DataTypes.STRING, allowNull: false},
+    lName: {type: DataTypes.STRING, allowNull: false},
+
+    telOut: {type: DataTypes.STRING, allowNull: false},
+    telIn: {type: DataTypes.STRING, unique:true},
+    email: {type: DataTypes.STRING, allowNull: false},
+
+    address: {type: DataTypes.STRING, allowNull: false},
+    room: {type: DataTypes.STRING},
+
+    // sb: {type: DataTypes.STRING, unique:true, allowNull: false},
+    // inv: {type: DataTypes.STRING, unique:true, allowNull: false},
+    // inDate: {type: DataTypes.STRING, allowNull: false},
+    // outDate: {type: DataTypes.STRING, allowNull: false}
+})
+
+const Department = sequelize.define('department', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING, unique: true, allowNull: false},
+})
+
+const Organization = sequelize.define('organization', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING, unique: true, allowNull: false},
 })
 
 
@@ -97,6 +129,9 @@ const Soft = sequelize.define('soft', {
 Soft.hasMany(Key)
 Key.belongsTo(Soft)
 
+Department.hasMany(Emp)
+Emp.belongsTo(Department)
+
 // Brand.hasMany(Device)
 // Device.belongsTo(Brand)
 
@@ -122,6 +157,8 @@ module.exports = {
     // Device,
     Key,
     Soft,
+    Emp,
+    Department,
     // Type,
     // Brand,
     // Rating,

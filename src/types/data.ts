@@ -65,6 +65,15 @@ export interface Isoftware {
   // version: number | string,
 }
 
+export interface Idepartament {
+  id: number,
+  name: string,
+}
+
+export interface Iemp {
+
+}
+
 export interface Iroute{
   path: string,
   name: string,

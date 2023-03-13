@@ -66,6 +66,8 @@ const ModifyKey: FC<ModifyKeyProps> = ({show, onHide}) => {
 
 		const formData = new FormData()
 		// formData.append('name', name)
+
+		/*
 		formData.append('key', key)
 		formData.append('fName', fName)
 		formData.append('sName', sName)
@@ -74,13 +76,9 @@ const ModifyKey: FC<ModifyKeyProps> = ({show, onHide}) => {
 		formData.append('inv', invNum)
 		formData.append('inDate', inDate)
 		formData.append('outDate', outDate)
-		// formData.append('price', `${price}`)
-		// formData.append('img', file)
-		// formData.append('typeId', selectedTypeID)
-		// formData.append('typeId', selectedType.id)
-		// formData.append('brandId', selectedBrand.id)
-		// @ts-ignore
 		formData.append('softId', selectedSoft.id)
+		*/
+
 		// formData.append('info', JSON.stringify(info)) //массив низзя т.к. или строка или блоб. на сервере парсится обратно
 
 		createSoftware(formData).then(data => onHide())
@@ -159,13 +157,12 @@ const ModifyKey: FC<ModifyKeyProps> = ({show, onHide}) => {
 							<Form.Control
 								placeholder={"Введите порядковый номер устройства (SB***)"}
 								type={"number"}
-								value={sbNum}
+								value={activeKey.sb}
 								onChange={e => setSbNum(e.target.value)}
 							/>
 							<Form.Control
 								placeholder={"Введите инвентарный номер устройства"}
-								type={"number"}
-								value={invNum}
+								value={activeKey.inv}
 								onChange={e => setInvNum(e.target.value)}
 							/>
 							<hr/>

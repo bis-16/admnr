@@ -5,7 +5,7 @@ import {useAppSelector} from "../../hooks/useAppSelector";
 import {RootState} from "../../store/store";
 import CreateKey from "../../components/Modals/CreateKey";
 import DelKey from "../../components/Modals/DelKey";
-import CreateSoft from "../../components/Modals/CreateBrand";
+import CreateSoft from "../../components/Modals/CreateSoft";
 import ModifyKey from "../../components/Modals/ModifyKey";
 import {Ikey} from "../../types/data";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
